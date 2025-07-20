@@ -1,14 +1,18 @@
 import React from 'react'
+import Hero from '../components/Hero'
+import LatestCollection from '../components/LatestCollection'
+import BestSeller from '../components/BestSeller'
+import OurPolicy from '../components/OurPolicy'
+import NewsletterBox from '../components/NewsletterBox'
 
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to Our E-commerce Platform</h1>
-      <p>This is the home page where you can find the latest products and offers.</p>
-      <p>Stay tuned for more updates!</p>
-      {/* Future implementation will go here */}
-      <p>Home functionality is under development.</p>
-      
+      <Hero />
+      <LatestCollection />
+      <BestSeller />
+      <OurPolicy />
+      <NewsletterBox />
     </div>
   )
 }

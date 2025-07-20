@@ -1,10 +1,18 @@
+import { useState } from "react"
 import { assets } from "../assets/assets"
 import { Link, NavLink } from "react-router-dom"
 
 const Navbar = () => {
+
+  const [toggle, setToggle] = useState(false)
+
+  const handdleToggle = () => {
+    setToggle(!toggle)
+  }
+
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
-      <img src={assets.logo} alt="logo" className="w-28" />
+      <Link to='/'><img src={assets.logo} alt="logo" className="w-28" /></Link> 
 
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
 
@@ -46,13 +54,29 @@ const Navbar = () => {
         </div>
 
         <Link to="/cart" className="relative">
-          <img src={assets.cart_icon} alt="cart" className="w-5 min-w-5"/>
+          <img src={assets.cart_icon} alt="cart" className="w-5 min-w-5" />
           <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">10</p>
         </Link>
+        <img src={assets.menu_icon} alt="menubar" onClick={handdleToggle} className="w-5 cursor-pointer sm:hidden" />
+
+        {/* sidebar */}
+        <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${toggle ? 'w-full' : 'w-0'}`}>
+          <div className="flex flex-col text-gray-600">
+            <div onClick={handdleToggle} className="flex items-center gap-4 p-3 cursor-pointer">
+              <img className="h-4 rotate-180" src={assets.dropdown_icon} alt="dropdwonmenuback" />
+              <p>Back</p>
+            </div>
+
+            <NavLink onClick={handdleToggle} className="py-2 pl-6 border-b" to='/' >Home</NavLink>
+            <NavLink onClick={handdleToggle} className="py-2 pl-6 border-b" to='/collection' >Collection</NavLink>
+            <NavLink onClick={handdleToggle} className="py-2 pl-6 border-b" to='/about' >About</NavLink>
+            <NavLink onClick={handdleToggle} className="py-2 pl-6 border-b" to='/contact' >Contact</NavLink>
+
+          </div>
+
+        </div>
 
       </div>
-
-
 
     </div>
   )
