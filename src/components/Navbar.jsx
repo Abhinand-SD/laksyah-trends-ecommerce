@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { assets } from "../assets/assets"
 import { Link, NavLink } from "react-router-dom"
+import ShopContext from "../context/ShopContext"
 
 const Navbar = () => {
 
   const [toggle, setToggle] = useState(false)
+  const {showSearch, setShowSearch, getCartCount} = useContext(ShopContext)
 
   const handdleToggle = () => {
     setToggle(!toggle)
@@ -38,7 +40,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-5">
-        <img src={assets.search_icon} alt="searchicon" className="w-5 cursor-pointer" />
+        <img onClick={()=> setShowSearch(!showSearch)} src={assets.search_icon} alt="searchicon" className="w-5 cursor-pointer" />
 
         <div className="group relative">
           <img src={assets.profile_icon} alt="profileicon" className="w-5 cursor-pointer" />
@@ -55,7 +57,7 @@ const Navbar = () => {
 
         <Link to="/cart" className="relative">
           <img src={assets.cart_icon} alt="cart" className="w-5 min-w-5" />
-          <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">10</p>
+          <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">{getCartCount()}</p>
         </Link>
         <img src={assets.menu_icon} alt="menubar" onClick={handdleToggle} className="w-5 cursor-pointer sm:hidden" />
 

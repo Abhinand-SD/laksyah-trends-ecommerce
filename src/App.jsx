@@ -11,11 +11,15 @@ import Product from './pages/Product'
 import Collection from './pages/Collection'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import SearchBar from './components/SearchBar'
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] 1g:px-[9vw]">
+    <ToastContainer />
     <Navbar />
+    <SearchBar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
