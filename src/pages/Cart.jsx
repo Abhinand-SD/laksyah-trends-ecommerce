@@ -3,6 +3,7 @@ import ShopContext from '../context/ShopContext'
 import Title from '../components/Title'
 import { assets } from '../assets/assets';
 import { Link } from 'react-router-dom';
+import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
 
@@ -54,14 +55,22 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
-                  <input className='border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1' type='number' min={1} defaultValue={item.quantity} />
+                  <input onChange={(e) => e.target.value === '' || e.target.value === '0' ? null : updateQuantity(item._id, item.size, Number(e.target.value))} className='border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1' type='number' min={1} defaultValue={item.quantity} />
                   <img onClick={() => updateQuantity(item._id, item.size, 0)} src={assets.bin_icon} className='w-4 mr-4 sm:w-5 cursor-pointer' alt='' />
                 </div>
               )
             })
           }
 
-        </div>) : (
+          <div className='flex justify-end my-20'>
+            <div className='w-full sm:w-[450px]'>
+              <CartTotal />
+            </div>
+          </div>
+
+        </div>
+
+      ) : (
         <div className="flex flex-col items-center justify-center h-[80vh]">
           <h2 className="text-xl font-semibold mb-4">Your cart is empty 🛒</h2>
           <Link to="/" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700" >
