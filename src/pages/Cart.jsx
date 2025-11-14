@@ -73,10 +73,10 @@ const Cart = () => {
                       e.target.value === "" || e.target.value === "0"
                         ? null
                         : updateQuantity(
-                            item._id,
-                            item.size,
-                            Number(e.target.value)
-                          )
+                          item._id,
+                          item.size,
+                          Number(e.target.value)
+                        )
                     }
                     className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
                     type="number"
@@ -92,18 +92,18 @@ const Cart = () => {
                 </div>
               );
             })}
-            </div>
+          </div>
 
-            <div className="flex justify-end my-20">
-              <div className="w-full sm:w-[450px]">
-                <CartTotal />
+          <div className="flex justify-end my-20">
+            <div className="w-full sm:w-[450px]">
+              <CartTotal />
 
-                <div className="w-full text-end">
-                  <button onClick={()=> navigate('/place-order')} className="bg-black text-white text-sm my-8 px-8 py-3"> PROCEED TO CHECKOUT</button>
-                </div>
+              <div className="w-full text-end">
+                <button onClick={() => navigate('/place-order')} className="bg-black text-white text-sm my-8 px-8 py-3"> PROCEED TO CHECKOUT</button>
               </div>
             </div>
-          
+          </div>
+
         </>
       ) : (
         <div className="flex flex-col items-center justify-center h-[80vh]">

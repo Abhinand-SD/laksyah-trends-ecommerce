@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Login = () => {
+
+  const [currentState, setCurrentState] = useState('Sign Up')
   return (
-    <div>
-      
-    </div>
+    <form className='flex flex-col items-center w-[90%]'>
+
+    </form>
   )
 }
 
