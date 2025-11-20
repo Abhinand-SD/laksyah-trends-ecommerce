@@ -1,6 +1,7 @@
 import React from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
+import NewsletterBox from '../components/NewsletterBox'
 
 const Contact = () => {
   return (
@@ -18,11 +19,12 @@ const Contact = () => {
         <p className='text-gray-500'>Abhinand <br/> suite 390, whashingtome</p>
         <p className='text-gray-500'>Tel :34987897432 <br/> Email: asdsad@gmail.com</p>
         <p className='font-semibold text-xl text-gray-600'>Lalshaya store</p>
-        <p className='text-gray-500'>Abhinand <br/> suite 390, whashingtome</p>
-        <p></p>
+        <p className='text-gray-500'>Learn more about teams and job openings.</p>
+        <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
       </div>
     </div>
       
+      <NewsletterBox />
     </div>
   )
 }
