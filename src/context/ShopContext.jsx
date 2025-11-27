@@ -119,6 +119,13 @@ export const ShopContextProvider = (props) => {
         getProductData()
     },[])
 
+    useEffect(()=>{
+        if(!token && localStorage.getItem('token')){
+            console.log("token added")
+            setToken(localStorage.getItem('token'))
+        }
+    },[])
+
 
     const value = {
         products,
