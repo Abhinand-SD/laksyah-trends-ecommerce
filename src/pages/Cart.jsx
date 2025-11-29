@@ -6,30 +6,32 @@ import { Link } from "react-router-dom";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { products, currency, cartItem, updateQuantity, getCartCount, navigate } =
-    useContext(ShopContext);
-
-  // console.log('cart items', cartItem)
+  const { products, currency, cartItem, updateQuantity, getCartCount, navigate } = useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
 
-  useEffect(() => {
-    const tempData = [];
+  console.log(cartData)
 
-    for (const items in cartItem) {
-      // console.log("frist", items)
-      for (const item in cartItem[items]) {
-        // console.log("second", item)
-        if (cartItem[items]) {
-          tempData.push({
-            _id: items,
-            size: item,
-            quantity: cartItem[items][item],
-          });
+  useEffect(() => {
+
+    if (products.length > 0) {
+
+      const tempData = [];
+      for (const items in cartItem) {
+        // console.log("frist", items)
+        for (const item in cartItem[items]) {
+          // console.log("second", item)
+          if (cartItem[items]) {
+            tempData.push({
+              _id: items,
+              size: item,
+              quantity: cartItem[items][item],
+            });
+          }
         }
       }
+      setCartData(tempData);
     }
-    setCartData(tempData);
   }, [cartItem]);
   return (
     <div className="border-t pt-4">
@@ -40,6 +42,9 @@ const Cart = () => {
         <>
           <div>
             {cartData.map((item, index) => {
+              if(item.quantity <1){
+                return null;
+              }
               const productData = products.find(
                 (product) => product._id === item._id
               );
@@ -81,7 +86,7 @@ const Cart = () => {
                     className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
                     type="number"
                     min={1}
-                    defaultValue={item.quantity}
+                    value={item.quantity}
                   />
                   <img
                     onClick={() => updateQuantity(item._id, item.size, 0)}
@@ -109,7 +114,7 @@ const Cart = () => {
         <div className="flex flex-col items-center justify-center h-[80vh]">
           <h2 className="text-xl font-semibold mb-4">Your cart is empty 🛒</h2>
           <Link
-            to="/"
+            to="/collection"
             className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
           >
             Add to cart
