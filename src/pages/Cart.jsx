@@ -33,18 +33,18 @@ const Cart = () => {
       setCartData(tempData);
     }
   }, [cartItem]);
+
+  const filteredCart = cartData.filter((item) => item.quantity > 0 );
+
   return (
     <div className="border-t pt-4">
       <div className="text-2xl mb-3">
         <Title text1={"YOUR"} text2={"CART"} />
       </div>
-      {getCartCount() > 0 ? (
+      {filteredCart.length > 0 ? (
         <>
           <div>
-            {cartData.map((item, index) => {
-              if(item.quantity <1){
-                return null;
-              }
+            {filteredCart.map((item, index) => {
               const productData = products.find(
                 (product) => product._id === item._id
               );
