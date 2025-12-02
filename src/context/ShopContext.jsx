@@ -13,7 +13,7 @@ export const ShopContextProvider = (props) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState('')
     const [showSearch, setShowSearch] = useState(false)
-    const [cartItem, setCartItem] = useState({});
+    const [cartItems, setCartItems] = useState({});
     const [products, setProducts] = useState([]);
     const [token, setToken] = useState('')
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export const ShopContextProvider = (props) => {
             return;
         }
 
-        let cartData = structuredClone(cartItem);
+        let cartData = structuredClone(cartItems);
 
         if (cartData[itemId]) {
             if (cartData[itemId][size]) {
@@ -37,7 +37,7 @@ export const ShopContextProvider = (props) => {
             cartData[itemId] = {}
             cartData[itemId][size] = 1;
         }
-        setCartItem(cartData)
+        setCartItems(cartData)
 
         if(token) {
             try {
@@ -54,11 +54,11 @@ export const ShopContextProvider = (props) => {
 
     const getCartCount = () => {
         let totalCount = 0;
-        for (const items in cartItem) {
-            for (const item in cartItem[items]) {
+        for (const items in cartItems) {
+            for (const item in cartItems[items]) {
                 try {
-                    if (cartItem[items][item]) {
-                        totalCount += cartItem[items][item];
+                    if (cartItems[items][item]) {
+                        totalCount += cartItems[items][item];
                     }
                 } catch (error) {
                 }
@@ -68,10 +68,7 @@ export const ShopContextProvider = (props) => {
     }
 
     const updateQuantity = async (itemId, size, quantity) => {
-        let cartData = structuredClone(cartItem);
-
-        console.log(cartItem);
-
+        let cartData = structuredClone(cartItems);
 
         cartData[itemId][size] = quantity;
 
@@ -87,7 +84,7 @@ export const ShopContextProvider = (props) => {
             delete cartData[itemId];
         }
 
-        setCartItem(cartData)
+        setCartItems(cartData)
 
         if(token){
             try {
@@ -101,13 +98,13 @@ export const ShopContextProvider = (props) => {
 
     const getCartAmount = () => {
         let totalAmount = 0;
-        for (const items in cartItem) {
+        for (const items in cartItems) {
             let itemInfo = products.find((products) => products._id === items);
-            for (const item in cartItem[items]) {
+            for (const item in cartItems[items]) {
                 try {
-                    if (cartItem[items][item] > 0) {
+                    if (cartItems[items][item] > 0) {
                         // add total amount of all quntity
-                        totalAmount += itemInfo.price * cartItem[items][item];
+                        totalAmount += itemInfo.price * cartItems[items][item];
 
                     }
                 } catch (err) {
@@ -140,7 +137,7 @@ export const ShopContextProvider = (props) => {
             console.log(response.data);
             
             if(response.data.success){
-                setCartItem(response.data.cartData)
+                setCartItems(response.data.cartData)
             }
             
         } catch (err) {
@@ -169,7 +166,7 @@ export const ShopContextProvider = (props) => {
         setSearch,
         showSearch,
         setShowSearch,
-        cartItem,
+        cartItems,
         addToCart,
         getCartCount,
         updateQuantity,
