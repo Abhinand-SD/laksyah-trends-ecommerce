@@ -37,6 +37,8 @@ export const ShopContextProvider = (props) => {
             cartData[itemId] = {}
             cartData[itemId][size] = 1;
         }
+        console.log("shop context",cartData);
+        
         setCartItems(cartData)
 
         if(token) {

@@ -38,25 +38,26 @@ const PlaceOrder = () => {
 
     try {
       let orderItems = []
-
-      console.log(cartItems);
-      
-
       for(const items in cartItems) {
+        console.log(items);
+        
         for(const item in cartItems[items]){
+           console.log(item);
+           console.log("result",cartItems[items][item])
+           
           if(cartItems[items][item] > 0) {
             const itemInfo = structuredClone(products.find(product => product._id === items));
+            console.log(itemInfo)
             if(itemInfo){
               itemInfo.size = item
               itemInfo.quality = cartItems[items][item]
-
               orderItems.push(itemInfo)
             }
           } 
         }
       }
 
-      console.log(orderItems)
+      // console.log(orderItems)
     } catch (error) {
       
     }

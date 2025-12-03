@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { products, currency, cartItem, updateQuantity, getCartCount, navigate } = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity, getCartCount, navigate } = useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
+
+  console.log(cartData, cartItems);
+  
 
   console.log(cartData)
 
@@ -17,24 +20,27 @@ const Cart = () => {
     if (products.length > 0) {
 
       const tempData = [];
-      for (const items in cartItem) {
+      for (const items in cartItems) {
         // console.log("frist", items)
-        for (const item in cartItem[items]) {
+        for (const item in cartItems[items]) {
           // console.log("second", item)
-          if (cartItem[items]) {
+          if (cartItems[items]) {
             tempData.push({
               _id: items,
               size: item,
-              quantity: cartItem[items][item],
+              quantity: cartItems[items][item],
             });
           }
         }
       }
       setCartData(tempData);
     }
-  }, [cartItem]);
+  }, [cartItems]);
 
   const filteredCart = cartData.filter((item) => item.quantity > 0 );
+
+  console.log("fjskdfdsjkf",filteredCart);
+  
 
   return (
     <div className="border-t pt-4">
