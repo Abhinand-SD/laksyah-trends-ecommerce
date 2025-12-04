@@ -91,7 +91,10 @@ const PlaceOrder = () => {
           default:
             break;
       }
-    } catch (error) {}
+    } catch (err) {
+      console.log(err)
+      toast.error(err.message)
+    }
   };
 
   return (

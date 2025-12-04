@@ -10,11 +10,6 @@ const Cart = () => {
 
   const [cartData, setCartData] = useState([]);
 
-  console.log(cartData, cartItems);
-  
-
-  console.log(cartData)
-
   useEffect(() => {
 
     if (products.length > 0) {
@@ -38,8 +33,6 @@ const Cart = () => {
   }, [cartItems]);
 
   const filteredCart = cartData.filter((item) => item.quantity > 0 );
-
-  console.log("fjskdfdsjkf",filteredCart);
   
 
   return (
