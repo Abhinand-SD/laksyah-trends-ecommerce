@@ -10,11 +10,17 @@ const Orders = () => {
 
   const [orderData, setOrderData] = useState([])
 
+  console.log(orderData);
+  
+
   const loadOrderData = async () => {
     try {
       
       const response = await axios.post(backendUrl + '/api/order/userOrders', {},{headers:{token}})
       console.log("res",response.data)
+      if(response.data.success){
+        setOrderData(response.data.orders)
+      }
     } catch {
 
     }
