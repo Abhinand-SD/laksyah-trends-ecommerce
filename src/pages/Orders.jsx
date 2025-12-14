@@ -1,34 +1,55 @@
 import React, { useContext } from 'react'
+import axios from 'axios';
 import ShopContext from '../context/ShopContext'
 import Title from '../components/Title';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+
 
 const Orders = () => {
 
   const { backendUrl, token, currency } = useContext(ShopContext);
 
-  const [orderData, setOrderData] = useState([])
-
-  console.log(orderData);
-  
+  const [orderData, setOrderData] = useState([]);
 
   const loadOrderData = async () => {
     try {
-      
+
+      if(!token) return null;
+
       const response = await axios.post(backendUrl + '/api/order/userOrders', {},{headers:{token}})
-      console.log("res",response.data)
+    
       if(response.data.success){
-        setOrderData(response.data.orders)
+        let allOrdersItems = [];
+        response.data.orders.map((order)=>{
+          
+          order.items.map((item)=>{
+
+            allOrdersItems.push({...item,
+              status: order.status,
+              payment: order.payment,
+              paymentMethod: order.paymentMethod,
+              date: order.date
+            })
+          })
+        })
+        setOrderData(allOrdersItems.reverse())
+        
       }
-    } catch {
+    } catch(err) {
+      console.log(err)
+      toast.error(err.message)
 
     }
   }
 
   useEffect(() => {
-    loadOrderData()
-  }, [token])
+  if(token){
+    loadOrderData();
+  }
+}, [token]);
+
 
   return (
     <div className='border-t pt-16'>
@@ -39,14 +60,14 @@ const Orders = () => {
       <div>
         {
           orderData.map((item, index) => (
-            <div key={item._id} className='py-4 border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
+            <div key={index} className='py-4 border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
               <div className='flex items-start gap-6 text-sm'>
                 <img className='w-16 sm:w-20' src={item.image[0]} alt='' />
                 <div>
                   <p className='sm:text-base font-medium'>{item.name}</p>
                   <div className='flex items-center gap-3 mt-2 text-base text-gray-700'>
-                    <p className='text-lg'>{currency}{item.price}</p>
-                    <p> Quantity: 1</p>
+                    <p>{currency}{item.price}</p>
+                    <p> Quantity: {item.quantity || 1}</p>
                     <p> Size: M</p>
                   </div>
 

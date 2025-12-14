@@ -23,6 +23,7 @@ const Login = () => {
         if(response.data.success){
           setToken(response.data.token);
           localStorage.setItem('token', response.data.token)
+          toast.success(response.data.message)
         }else{
           toast.error(response.data.message)
         }
@@ -34,6 +35,7 @@ const Login = () => {
         if(response.data.success){
           setToken(response.data.token);
           localStorage.setItem('token', response.data.token)
+          toast.success(response.data.message)
         }else{
           toast.error(response.data.message)
         }
@@ -42,7 +44,7 @@ const Login = () => {
       }
     } catch (err) {
       console.log(err)
-      toast.error(err.message)
+      toast.error("Server error, please try again")
     }
   }
 

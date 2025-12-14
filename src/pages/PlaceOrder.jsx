@@ -38,10 +38,6 @@ const PlaceOrder = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const submitHandler = async (event) => {
-    event.preventDefault();
-  };
-
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
@@ -61,7 +57,7 @@ const PlaceOrder = () => {
 
             if (itemInfo) {
               itemInfo.size = item;
-              itemInfo.quality = cartItems[items][item];
+              itemInfo.quantity = cartItems[items][item];
               orderItems.push(itemInfo);
             }
           }
@@ -79,10 +75,11 @@ const PlaceOrder = () => {
       switch (method) {
         // API calls for COD
         case 'cod':
-          const response = await axios.post(backendUrl + '/api/order/placeorder',orderData,{headers:{token}})
+          const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers:{token}})
           if(response.data.success){
             setCartItems({})
             navigate('/orders')
+            toast.success(response.data.message)
           }else{
             toast.error(response.data.message)
           }
