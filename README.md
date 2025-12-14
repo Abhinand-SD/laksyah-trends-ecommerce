@@ -80,15 +80,11 @@ totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 
 
 🖼 Preview
 
-(Optional: Add screenshots or GIFs showing the cart and total update)
-
 🧑‍💼 Author
 
 Abhinand SD
 📍 MERN Stack Developer
-📧 [YourEmail@example.com
-]
-🌐 [Portfolio Link or LinkedIn]
+🌐 https://www.linkedin.com/in/abhinand-sd/
 
 
 
