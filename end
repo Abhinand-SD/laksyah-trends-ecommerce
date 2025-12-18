@@ -1,0 +1,32 @@
+[33m5c2d561[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Revise author details and clean up README
+[33m158e94b[m fully dynamic & track order added
+[33m2a5de06[m orders set in orders page and add toast success messages
+[33m1ad83b0[m style bug fix
+[33md063765[m start my order page
+[33m7141922[m add switch case for order placeing
+[33mdb65f8e[m bug fix
+[33m403ac16[m start placeholder
+[33m079f27f[m start to set placeOrder functinality
+[33mdfce1da[m bug fix
+[33m14dbd50[m cart page connected to database completed
+[33m409b784[m cart item add to database
+[33ma9b3738[m navbar navigation updation
+[33mfc7ebfa[m add logout
+[33m01a3282[m add signup login with database
+[33m6521d13[m add local product list item to database listed product
+[33mad5476b[m final style fixing
+[33mc8b1c57[m start contact page
+[33ma01190a[m add about page
+[33m5b135f1[m add login signup
+[33m08a185a[m add orders page with demmy data
+[33m9347dc1[m Recommit using my account
+[33m4b34b69[m Enhance README with project details and features
+[33ma003a0d[m readme update only
+[33md0688b3[m add total cart amount
+[33m94c9f9a[m complete cart page
+[33m98d7f84[m add to cart page started
+[33md8eb038[m collection complete
+[33m18c57f6[m home page completed
+[33me26c6b4[m complete with footer
+[33mea44774[m normal navbar completed
+[33ma5a4069[m initial commit
