@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
-  
+
   const {
     navigate,
     backendUrl,
@@ -21,7 +21,7 @@ const PlaceOrder = () => {
     products,
   } = useContext(ShopContext);
   const [formData, setFormData] = useState({
-    fristName: "",
+    firstName: "",
     lastName: "",
     email: "",
     street: "",
@@ -89,18 +89,18 @@ const PlaceOrder = () => {
             toast.error(response.data.message);
           }
           break;
-        
+
         case "stripe":
-          const responseStripe = await axios.post(backendUrl + '/api/order/stripe', orderData,{headers:{token}})
-          if(responseStripe.data.success) {
-            
-            const {session_url} = responseStripe.data
+          const responseStripe = await axios.post(backendUrl + '/api/order/stripe', orderData, { headers: { token } })
+          if (responseStripe.data.success) {
+
+            const { session_url } = responseStripe.data
             window.location.replace(session_url)
-          }else {
+          } else {
             toast.error(responseStripe.data.message)
           }
-          
-        break;
+
+          break;
 
         default:
           break;
@@ -125,11 +125,11 @@ const PlaceOrder = () => {
         <div className="flex gap-3">
           <input
             onChange={onChangeHandler}
-            name="fristName"
-            value={formData.fristName}
+            name="firstName"
+            value={formData.firstName}
             className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
             type="text"
-            placeholder="Frist Name"
+            placeholder="First Name"
             required
           />
           <input
@@ -230,9 +230,8 @@ const PlaceOrder = () => {
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "stripe" ? "bg-green-400" : ""
-                }`}
+                className={`min-w-3.5 h-3.5 border rounded-full ${method === "stripe" ? "bg-green-400" : ""
+                  }`}
               ></p>
               <img className="h-5 mx-4" src={assets.stripe_logo} alt="" />
             </div>
@@ -242,9 +241,8 @@ const PlaceOrder = () => {
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "razorpay" ? "bg-green-400" : ""
-                }`}
+                className={`min-w-3.5 h-3.5 border rounded-full ${method === "razorpay" ? "bg-green-400" : ""
+                  }`}
               ></p>
               <img className="h-5 mx-4" src={assets.razorpay_logo} alt="" />
             </div>
@@ -254,9 +252,8 @@ const PlaceOrder = () => {
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
               <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "cod" ? "bg-green-400" : ""
-                }`}
+                className={`min-w-3.5 h-3.5 border rounded-full ${method === "cod" ? "bg-green-400" : ""
+                  }`}
               ></p>
               <p className="text-f=gray-500 text-sm font-medium mx-4">
                 CASH ON DELIVERY
