@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
-
+  
   const {
     navigate,
     backendUrl,
@@ -38,6 +38,35 @@ const PlaceOrder = () => {
 
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const initPay = (order) => {
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY,
+      amount: order.amount,
+      Currency: order.Currency,
+      name: 'Order Payment',
+      description: 'Order Payment',
+      order_id: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+        try{
+          const {data} = await axios.post(backendUrl + '/api/order/verifyRazorpay', response, {headers:{token}})
+
+          if(data.success) {
+            navigate('/orders')
+            setCartItems({})
+          }
+        } catch(err) {
+          console.log(err);
+          toast.error(err.message)
+        }
+
+      }
+    }
+
+    const rzp = new window.Razorpay(options)
+    rzp.open()
+  }
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -101,6 +130,13 @@ const PlaceOrder = () => {
           }
 
           break;
+
+        case "razorpay":
+          const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, { headers: { token } })
+
+          if (responseRazorpay.data.success) {
+            initPay(responseRazorpay.data.order)
+          }
 
         default:
           break;
