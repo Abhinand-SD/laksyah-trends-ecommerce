@@ -16,9 +16,7 @@ const Cart = () => {
 
       const tempData = [];
       for (const items in cartItems) {
-        // console.log("frist", items)
         for (const item in cartItems[items]) {
-          // console.log("second", item)
           if (cartItems[items]) {
             tempData.push({
               _id: items,

@@ -12,8 +12,6 @@ const Product = () => {
   const [image, setImage] = useState('')
   const [size, setSize] = useState('')
 
-  console.log(productData)
-
   const fetchProductData = async () => {
 
     products.map((item) => {

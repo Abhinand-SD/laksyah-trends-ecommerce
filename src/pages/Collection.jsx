@@ -21,7 +21,6 @@ const Collection = () => {
     }
     else {
       setCategory(prev => [...prev, e.target.value])
-      // console.log("working on process")
     }
 
   }
