@@ -1,111 +1,207 @@
+🛍️ E-Commerce Frontend (React.js)
 
-#E-commerce App
-
- - install : [create vite@latest, react-router-dom, react-toastify, tailwindcss @tailwindcss/vite, tailwindcss @tailwindcss/vite]
- - Vite plugin : tailwindcss()
-
-
-🛒 E-Commerce App – Cart Total Feature Completed
-📖 Overview
-
-This project is a MERN Stack E-Commerce Application where users can browse products, add them to their cart, and view the total cart amount in real time.
-The latest update includes the Cart Total Calculation feature, which dynamically updates based on product quantity and price.
+A modern and responsive E-commerce frontend application built using React.js, designed to work seamlessly with the MERN E-commerce Backend API.
+This application provides a complete user shopping experience along with admin access support.
 
 🚀 Features
-🧑‍💻 User Side
+👤 User Features
 
-User authentication (Sign up / Login).
+User Signup & Login
 
-Add or remove products from the cart.
+OTP-based signup flow
 
-Quantity management with live total price updates.
+JWT-based authentication
 
-Displays total cart amount dynamically.
+Google / Social login support (SSO)
 
-Product details page with images, description, and price.
+Persistent login using cookies
 
-🛠 Admin Side
+Product listing with categories
 
-Admin login for product management.
+Product detail page with:
 
-CRUD operations for products and categories.
+Image zoom
 
-User management (block/unblock).
+Breadcrumb navigation
 
-💡 Tech Stack
+Ratings & reviews
 
-Frontend: React.js, HTML5, CSS3, Tailwind / Bootstrap
-Backend: Node.js, Express.js
-Database: MongoDB
-Authentication: JWT (JSON Web Token)
-Others: Axios, SweetAlert, EJS (for admin templates)
+Price & discounts
 
-📦 Installation
-# Clone the repository
-git clone https://github.com/<your-username>/<your-repo-name>.git
+Stock status (In Stock / Out of Stock)
 
-# Go to project directory
-cd e-commerce-app
+Related products
 
-# Install dependencies
+Add to cart
+
+Update cart quantity
+
+Remove items from cart
+
+Checkout & payment (Stripe)
+
+Order success & failure handling
+
+Order history page
+
+🛠️ Admin Features
+
+Admin login
+
+User management (block / unblock)
+
+Category management (add / edit / delete)
+
+Product management:
+
+Add / edit / soft delete products
+
+Upload multiple images
+
+Image preview before upload
+
+Order management dashboard
+
+🧑‍💻 Tech Stack
+Technology	Usage
+React.js	Frontend library
+React Router	Routing
+Axios	API calls
+Context API / Redux	State management
+CSS / Tailwind / Bootstrap	Styling
+Stripe	Payment UI
+JWT	Authentication
+Cloudinary	Image rendering
+Vite / CRA	Build tool
+📁 Folder Structure
+frontend/
+│
+├── src/
+│   ├── api/
+│   │   └── axiosInstance.js
+│   │
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ProductCard.jsx
+│   │   └── Loader.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Signup.jsx
+│   │   ├── ProductList.jsx
+│   │   ├── ProductDetail.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Checkout.jsx
+│   │   └── Orders.jsx
+│   │
+│   ├── admin/
+│   │   ├── AdminLogin.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Users.jsx
+│   │   ├── Products.jsx
+│   │   └── Categories.jsx
+│   │
+│   ├── context/
+│   │   ├── AuthContext.jsx
+│   │   └── CartContext.jsx
+│   │
+│   ├── routes/
+│   │   └── ProtectedRoute.jsx
+│   │
+│   ├── utils/
+│   │   └── helpers.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── .env
+├── package.json
+└── README.md
+
+⚙️ Environment Variables
+
+Create a .env file in the root directory:
+
+VITE_API_BASE_URL=http://localhost:5000
+VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_public_key
+
+
+(If using CRA, use REACT_APP_ prefix)
+
+🛠️ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/ecommerce-frontend.git
+cd ecommerce-frontend
+
+2️⃣ Install Dependencies
 npm install
 
-# Start the server
-npm start
-
-
-If the frontend and backend are separate:
-
-# For backend
-cd backend
-npm install
-npm start
-
-# For frontend
-cd frontend
-npm install
+3️⃣ Run the Application
 npm run dev
 
-🧮 Cart Total Logic
 
-Each product in the cart contains:
+App runs on:
 
-price
+http://localhost:3000
 
-quantity
+🔗 API Integration
 
-The total cart amount is calculated as:
+All API requests are handled via Axios instance:
 
-totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+import axios from "axios";
 
-🖼 Preview
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  withCredentials: true,
+});
 
-🧑‍💼 Author
+export default instance;
+
+🔐 Authentication Flow
+
+User logs in
+
+Backend sends JWT via HTTP-only cookies
+
+Frontend stores user state
+
+Protected routes verify authentication
+
+Admin routes verify admin role
+
+🎨 UI & UX Highlights
+
+Fully responsive layout
+
+Clean & minimal design
+
+Smooth navigation
+
+Loading states & error handling
+
+SEO-friendly routing
+
+Accessible UI components
+
+📌 Future Enhancements
+
+Wishlist feature
+
+Product reviews & ratings UI
+
+Coupon & offers UI
+
+Admin analytics charts
+
+Progressive Web App (PWA)
+
+Dark mode
+
+👨‍🎓 Author
 
 Abhinand SD
-📍 MERN Stack Developer
-🌐 https://www.linkedin.com/in/abhinand-sd/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- #Not understand sections
-   
-   -Size with add to cart
-   -Cart product count
+Frontend / Full Stack Developer (MERN)
+Self-learned | Project-based learning
